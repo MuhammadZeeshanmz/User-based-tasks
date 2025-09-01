@@ -71,4 +71,19 @@ class UserService
         $task->delete();
         return $task;
     }
+    public function filter($request){
+        $name = $request->name;
+        $users = User::query()
+            ->when($name, fn($q) =>
+                $q->where('name', $name)
+                ->nestedWhere(fn($q) =>
+                    $q->where('email', 'like', "%{$name}%")
+                )
+            )
+           
+            ->get();
+
+        return $users;
+    }
 }
+
