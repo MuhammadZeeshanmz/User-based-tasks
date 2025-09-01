@@ -7,4 +7,4 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::apiResource('users', UserController::class);
-Route::put('/users/{id}', [UserController::class, 'update']);
+// Route::put('/users/{id}', [UserController::class, 'update']);
